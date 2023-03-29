@@ -75,7 +75,11 @@ while True:
             for index in range(len(os.listdir("Faces_in"))):
                 shutil.move("Faces_in/"+str(os.listdir('Faces_in')[0]),"FacesDir_in/"+str(os.listdir('Faces_in')[0]))
 
+            print("Faces_in to FacesDir_in")
+
             for unknown_face_index in range(len(os.listdir("FacesDir_in"))):
+
+                print(os.listdir("FacesDir_in")[unknown_face_index])
 
                 unknown_face = cv2.imread("FaceDir_in/"+str(os.listdir("FacesDir_in")[unknown_face_index]))
                 unknown_face_locations = face_recognition.face_locations(unknown_face)
@@ -91,16 +95,18 @@ while True:
                         if compare_matches[i] == 'True' :
                             k += 1
 
-                    if k == 3 :
+                    if k >= 3 :
                         print("Face_Detected")
                         shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[unknown_face_index]),
                                     "DetectedFaces/" + str(os.listdir('FacesDir_in')[unknown_face_index]))
-                        break
 
+                    break
 
+            if len(os.listdir("FacesDir_in")) != 0:
+                for unknown_face_index in range(len(os.listdir("Faces_in"))):
+                    shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
+                                "UnknownFaces/" + str(os.listdir('FacesDir_in')[0]))
 
-            print("Face to FaceDir")
-
-
+            print("+++" * 20)
     except:
         continue

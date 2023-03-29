@@ -5,6 +5,7 @@ from config import host, user, password, db_name
 import os
 import shutil
 
+
 class FaceRecognition:
     def FaceAdd(self):
         try:

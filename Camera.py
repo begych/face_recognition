@@ -2,7 +2,7 @@ import cv2
 import face_recognition
 from PIL import Image
 
-cap_0 = cv2.VideoCapture(2)
+cap_0 = cv2.VideoCapture(0)
 # cap_1 = cv2.VideoCapture(2)
 
 # process_this_frame = True
