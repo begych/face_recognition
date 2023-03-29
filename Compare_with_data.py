@@ -82,23 +82,22 @@ while True:
 
                 unknown_face = cv2.imread("FacesDir_in/"+str(os.listdir("FacesDir_in")[unknown_face_index]))
                 unknown_face_locations = face_recognition.face_locations(unknown_face)
-                unknown_face_encodings = face_recognition.face_encodings(unknown_face, unknown_face_locations)
+                unknown_face_encodings = face_recognition.face_encodings(unknown_face, unknown_face_locations)[0]
                 # face_recognition.compare_faces()
 
-                print(len(database))
 
                 for index in range(len(database)):
                     data = database[index]
                     known_face_encodings = data['encodings']
-                    # print(known_face_encodings)
+                    # print("known -- ",known_face_encodings)
 
-                    compare_matches = face_recognition.compare_faces(known_face_encodings[0], unknown_face_encodings)
+                    compare_matches = face_recognition.compare_faces(known_face_encodings, unknown_face_encodings)
 
                     print(compare_matches)
 
                     k = 0
                     for i in range(len(compare_matches)):
-                        if compare_matches[i] == 'True' :
+                        if True in compare_matches[i]  :
                             k += 1
 
                     if k >= 3 :
@@ -106,7 +105,7 @@ while True:
                         shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[unknown_face_index]),
                                     "DetectedFaces/" + str(os.listdir('FacesDir_in')[unknown_face_index]))
 
-                    break
+
 
             if len(os.listdir("FacesDir_in")) != 0:
                 for unknown_face_index in range(len(os.listdir("Faces_in"))):
