@@ -6,12 +6,14 @@ import pickle5 as pickle
 with open("Data/database.pickle", "rb") as f:
     database = pickle.load(f)
 
+# database = {}
+
 name = input("Name: ")
 
 os.mkdir(f"Photo's_Data/{name}")
 
 
-cap = cv2.VideoCapture(2)
+cap = cv2.VideoCapture(0)
 
 encodings = []
 count = 0
@@ -29,7 +31,7 @@ while True:
             cv2.imwrite(f"Photo's_Data/{name}/{count}.jpg",frame)
 
             face_locations = face_recognition.face_locations(frame)
-            face_encodings = face_recognition.face_encodings(frame, face_locations)
+            face_encodings = face_recognition.face_encodings(frame, face_locations)[0]
 
             encodings.append(face_encodings)
 
