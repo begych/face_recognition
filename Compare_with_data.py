@@ -64,6 +64,7 @@ import shutil
 with open("Data/database.pickle", "rb") as f:
     database = pickle.load(f)
 
+t = 0
 
 while True:
     try:
@@ -77,13 +78,16 @@ while True:
             print("Faces_in to FacesDir_in")
 
 
-            for unknown_face_index in range(len(os.listdir("FacesDir_in"))):
+            # for unknown_face_index in range(len(os.listdir("FacesDir_in"))):
+            while len(os.listdir("FacesDir_in")) != 0 :
 
-                print(os.listdir("FacesDir_in")[unknown_face_index])
+                print(os.listdir("FacesDir_in")[0])
 
-                unknown_face = cv2.imread("FacesDir_in/"+str(os.listdir("FacesDir_in")[unknown_face_index]))
+                unknown_face = cv2.imread("FacesDir_in/"+str(os.listdir("FacesDir_in")[0]))
                 unknown_face_locations = face_recognition.face_locations(unknown_face)
                 unknown_face_encodings = face_recognition.face_encodings(unknown_face, unknown_face_locations)[0]
+
+                t = 0
 
                 for index in range(len(database)):
                     data = database[index]
@@ -101,14 +105,19 @@ while True:
 
                     if k >= 3 :
                         print("Face_Detected")
-                        shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[unknown_face_index]),
-                                    "DetectedFaces/" + str(os.listdir('FacesDir_in')[unknown_face_index]))
+                        t += 1
+                        shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
+                                    "DetectedFaces/" + str(os.listdir('FacesDir_in')[0]))
 
 
-            if len(os.listdir("FacesDir_in")) != 0:
-                for unknown_face_index in range(len(os.listdir("Faces_in"))):
+                if t == 0 :
                     shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
                                 "UnknownFaces/" + str(os.listdir('FacesDir_in')[0]))
+
+                # if len(os.listdir("FacesDir_in")) != 0:
+                #     for unknown_face_index in range(len(os.listdir("Faces_in"))):
+                #         shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
+                #                     "UnknownFaces/" + str(os.listdir('FacesDir_in')[0]))
 
 
             print("+++" * 20)
