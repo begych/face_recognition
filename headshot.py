@@ -3,10 +3,10 @@ import face_recognition
 import os
 import pickle5 as pickle
 
-# with open("Data/database.pickle", "rb") as f:
-#     database = pickle.load(f)
+with open("Data/database.pickle", "rb") as f:
+    database = pickle.load(f)
 
-database = {}
+# database = {}
 
 name = input("Name: ")
 
@@ -44,7 +44,7 @@ while True:
         break
 
 data = {"name" : name, "encodings" : encodings}
-database = {len(database):data}
+database[len(database)] = data
 with open(f"Data/database.pickle", "wb") as file:
     file.write(pickle.dumps(database))
 
