@@ -103,8 +103,9 @@ while True:
                             k += 1
 
 
-                    if k >= 3 :
+                    if k >= 10 :
                         print("Face_Detected")
+                        print(data['name'])
                         t += 1
                         shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
                                     "DetectedFaces/" + str(os.listdir('FacesDir_in')[0]))

@@ -3,10 +3,10 @@ import face_recognition
 import os
 import pickle5 as pickle
 
-with open("Data/database.pickle", "rb") as f:
-    database = pickle.load(f)
+# with open("Data/database.pickle", "rb") as f:
+#     database = pickle.load(f)
 
-# database = {}
+database = {}
 
 name = input("Name: ")
 
@@ -39,7 +39,7 @@ while True:
 
 
     cv2.imshow("Video", frame)
-    if cv2.waitKey(1) & (count == 5) :
+    if cv2.waitKey(1) & (count == 10) :
         # print(encodings)
         break
 
