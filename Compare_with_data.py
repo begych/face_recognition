@@ -115,10 +115,6 @@ while True:
                     shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
                                 "UnknownFaces/" + str(os.listdir('FacesDir_in')[0]))
 
-                # if len(os.listdir("FacesDir_in")) != 0:
-                #     for unknown_face_index in range(len(os.listdir("Faces_in"))):
-                #         shutil.move("FacesDir_in/" + str(os.listdir('FacesDir_in')[0]),
-                #                     "UnknownFaces/" + str(os.listdir('FacesDir_in')[0]))
 
 
             print("+++" * 20)

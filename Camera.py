@@ -17,16 +17,16 @@ while True:
 
     if (ret0):
         # if process_this_frame:
-        small_img0 = cv2.resize(img0, (0, 0), fx = 0.25, fy = 0.25)
-        face_locations0 = face_recognition.face_locations(small_img0)
+        # small_img0 = cv2.resize(img0, (0, 0), fx = 0.25, fy = 0.25)
+        face_locations0 = face_recognition.face_locations(img0)
         # process_this_frame = not process_this_frame
         # print(face_locations)
         count += 1
         for index, (x, y, w, h) in enumerate(face_locations0):
-            x *= 4
-            y *= 4
-            w *= 4
-            h *= 4
+            # x *= 4
+            # y *= 4
+            # w *= 4
+            # h *= 4
             faces = img0[x:w, h:y]
             # pil_img = Image.fromarray(faces)
             # pil_img.save(f"Faces_in/{count}_face_img.jpg")
