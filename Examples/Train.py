@@ -41,7 +41,7 @@ def get_images(path):
 
 
 # Путь к фотографиям
-path = 'KnownFaces'
+path = '../KnownFaces'
 # Получаем лица и соответствующие им номера
 images, labels = get_images(path)
 cv2.destroyAllWindows()
